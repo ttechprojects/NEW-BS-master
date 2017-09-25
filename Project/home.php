@@ -12,7 +12,10 @@ header("Pragma: no-cache");
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <title>Booking System</title>
-  
+    
+<script src="js/jquery-1.10.2.js" type="text/javascript"></script>  
+<script src="js/jquery-ui.js" type="text/javascript"></script>
+<script src="js/jquery-3.1.0.min.js" type="text/javascript"></script>
    <!--    For modal forms     -->
     <link href="css/bootstrap.css" rel="stylesheet" /> 
     <link href="css/login-register.css" rel="stylesheet" />
