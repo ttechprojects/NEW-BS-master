@@ -86,12 +86,12 @@ CREATE TABLE `rooms` (
   `TV` int(1) NOT NULL DEFAULT '0',
   `Projector` int(1) NOT NULL DEFAULT '0',
   `PC` int(1) NOT NULL DEFAULT '0',
-  `IP Board` int(1) NOT NULL DEFAULT '0',
+  `IP_Board` int(1) NOT NULL DEFAULT '0',
   `DVD` int(1) NOT NULL DEFAULT '0',
-  `Podium Microphone` int(1) NOT NULL DEFAULT '0',
-  `Cordless Microphone` int(1) NOT NULL DEFAULT '0',
-  `Lap Microphone` int(1) NOT NULL DEFAULT '0',
-  `Video Conferencing` int(1) NOT NULL DEFAULT '0'
+  `Podium_Microphone` int(1) NOT NULL DEFAULT '0',
+  `Cordless_Microphone` int(1) NOT NULL DEFAULT '0',
+  `Lap_Microphone` int(1) NOT NULL DEFAULT '0',
+  `Video_Conferencing` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
