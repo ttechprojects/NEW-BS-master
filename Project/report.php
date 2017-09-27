@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php /*
+<?php 
     session_start();
     if(!isset($_SESSION['Login']))
     {
@@ -7,7 +7,7 @@
     }
     else
     {
-       */ 
+       
     
     ?>
 
@@ -105,7 +105,7 @@
 
     <div class="wrapper">
            <?php include('header2.php'); ?> 
-          <div class="sidebar" data-color="red" data-background="blue" style="margin:100px 0px 0px 0px;">
+          <div class="sidebar" data-color="red" data-background="blue" style="position:fixed;">
 			<!--
 		        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -116,8 +116,21 @@
                     <br>
                     <br>
 	                <li>
-	                    <a href="php/daily.php">
+	                    <a id="exportExcel" style="margin-top:50%;">
 	                        <i class="material-icons">file_upload</i>
+                          <script>
+                            $('#exportExcel').click(function(){
+                              if($('#daily').hasClass('active')){
+                                window.location.href="php/daily.php";
+                              }
+                              else if($('#weekly').hasClass('active')){
+                                window.location.href="php/weekly.php";
+                              }
+                              else if($('#monthly').hasClass('active')){
+                                window.location.href="php/monthly.php";
+                              }
+                            });
+                          </script>
 	                        <p>Export to excel</p>
 	                    </a>
 	                </li>
@@ -170,8 +183,8 @@
                     </script>
                 </p>
                 <div class="container-fluid">
-                    <div class="row" style="margin-top:20px;">
-                        <div class="col-lg-14 col-md-22 ">
+                    <div class="row" style="margin-top:2%;">
+                        <div class="col-lg-12 col-md-18s ">
                             <div class="card card-nav-tabs">
                                 <div class="card-header" data-background-color="red">
                                     <div class="nav-tabs-navigation">
@@ -201,10 +214,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                    <div class="card-content">
-                                    <div class="tab-content">
+                                    <div class="card-content" > 
+                                    <div class="tab-content" style="overflow:scroll; max-height:350px;">
                                         <div class="tab-pane active" id="daily">
-                                             <div class="card-content table-responsive">
+                                             <div class="card-content table-responsive"   >
                                     <table class="table">
                                         <thead class="text-warning">
                                             <th>Meeting Name</th>
@@ -220,21 +233,25 @@
                                         <tbody>
                                             <?php 
                                                 $con=mysqli_connect("localhost","root","","ekbooking");
-                                                $sql = "SELECT * FROM booking WHERE date = '".date('Y-m-d')."';";
+                                                $sql = "SELECT * FROM booking b,rooms r WHERE b.date = '".date('Y-m-d')."' and b.r_id=r.r_id;";
                                                 
                                                 if($result=mysqli_query($con,$sql))
                                                 {
                                                     while($row = mysqli_fetch_assoc($result))
                                                     {
+                                                        $stime=date_create($row['s_time']);
+                                                        $s=date_format($stime,'H:i:s');
+                                                        $etime=date_create($row['e_time']);
+                                                        $e=date_format($etime,'H:i:s');
                                                 
                                                 
                                                       echo '<tr>
-                                                            <td>'.$row['m_name'].'</td>
+                                                        <td>'.$row['m_name'].'</td>
                                                         <td>'.$row['s_name'].'</td>
                                                         <td>'.$row['date'].'</td>
-                                                        <td>'.$row['s_time'].'</td>
-                                                        <td>'.$row['e_time'].'</td>
-                                                        <td>'.$row['r_id'].'</td>  
+                                                        <td>'.$s.'</td>
+                                                        <td>'.$e.'</td>
+                                                        <td>'.$row['r_name'].'</td>  
                                                         <td>'.$row['guests'].'</td>  
                                                         <td>'.$row['email'].'</td>
                                                         <td class="text-danger">'.$row['contact'].'</td>
@@ -262,23 +279,27 @@
                                             <th>Contact</th>
                                          </thead>
                                         <tbody>
-                                            <?php 
+                                           <?php 
                                                 $con=mysqli_connect("localhost","root","","ekbooking");
-                                                $sql = "SELECT * FROM booking WHERE date >= SUBDATE('".date('Y-m-d')."',INTERVAL 7 DAY);";
+                                                $sql = "SELECT * FROM booking b,rooms r WHERE b.date >= SUBDATE('".date('Y-m-d')."',INTERVAL 7 DAY) and b.r_id=r.r_id;";
                                                 
                                                 if($result=mysqli_query($con,$sql))
                                                 {
                                                     while($row = mysqli_fetch_assoc($result))
                                                     {
-                                                
+                                                        
+                                                        $stime=date_create($row['s_time']);
+                                                        $s=date_format($stime,'H:i:s');
+                                                        $etime=date_create($row['e_time']);
+                                                        $e=date_format($etime,'H:i:s');
                                                 
                                                       echo '<tr>
                                                             <td>'.$row['m_name'].'</td>
                                                         <td>'.$row['s_name'].'</td>
                                                         <td>'.$row['date'].'</td>
-                                                        <td>'.$row['s_time'].'</td>
-                                                        <td>'.$row['e_time'].'</td>
-                                                        <td>'.$row['r_id'].'</td>  
+                                                        <td>'.$s.'</td>
+                                                        <td>'.$e.'</td>
+                                                        <td>'.$row['r_name'].'</td>  
                                                         <td>'.$row['guests'].'</td>  
                                                         <td>'.$row['email'].'</td>
                                                         <td class="text-danger">'.$row['contact'].'</td>
@@ -308,21 +329,24 @@
                                         <tbody>
                                            <?php 
                                                 $con=mysqli_connect("localhost","root","","ekbooking");
-                                            $sql = "SELECT * FROM booking WHERE date >= SUBDATE('".date('Y-m-d')."',INTERVAL 1 MONTH);";
+                                            $sql = "SELECT * FROM booking b,rooms r WHERE b.date >= SUBDATE('".date('Y-m-d')."',INTERVAL 1 MONTH) and b.r_id=r.r_id;";
                                                 
                                                 if($result=mysqli_query($con,$sql))
                                                 {
                                                     while($row = mysqli_fetch_assoc($result))
                                                     {
-                                                
+                                                        $stime=date_create($row['s_time']);
+                                                        $s=date_format($stime,'H:i:s');
+                                                        $etime=date_create($row['e_time']);
+                                                        $e=date_format($etime,'H:i:s');
                                                 
                                                       echo '<tr>
-                                                            <td>'.$row['m_name'].'</td>
+                                                        <td>'.$row['m_name'].'</td>
                                                         <td>'.$row['s_name'].'</td>
                                                         <td>'.$row['date'].'</td>
-                                                        <td>'.$row['s_time'].'</td>
-                                                        <td>'.$row['e_time'].'</td>
-                                                        <td>'.$row['r_id'].'</td>  
+                                                        <td>'.$s.'</td>
+                                                        <td>'.$e.'</td>
+                                                        <td>'.$row['r_name'].'</td>  
                                                         <td>'.$row['guests'].'</td>  
                                                         <td>'.$row['email'].'</td>
                                                         <td class="text-danger">'.$row['contact'].'</td>
@@ -366,4 +390,4 @@
 
 
 </html>
-<?php //} ?>
+<?php } ?>

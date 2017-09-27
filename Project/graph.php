@@ -1,4 +1,15 @@
-<!DOCTYPE HTML>
+ <!DOCTYPE HTML>
+<?php 
+    session_start();
+    if(!isset($_SESSION['Login']))
+    {
+        header('Location: index.php');
+    }
+    else
+    {
+       
+    
+    ?>
 <html>
 <head>
       <title>Timeline | External data</title>
@@ -66,8 +77,8 @@
                     </ul>
 	    	</div>
 		</div>
-           <div class="main-panel">
-            <div class="content">
+           <div class="main-panel" >
+            <div class="content" style="overflow:scroll;">
                <p id="date" style="color:black; margin-top:70px; font-size:30px; font-family:helvetica;"> 
                    <script type="text/javascript">
 var m_names = ["January", "February", "March", 
@@ -99,8 +110,9 @@ document.write(d_names[curr_day] + ","  + m_names[curr_month] + " " +curr_date);
 
                 <br>
            
- 
+ <div style="overflow:scroll; max-height:450px;">
 <div id="visualization"></div>
+   </div>
 <div id="loading">loading...</div>
 
 <script type="text/javascript">
@@ -111,11 +123,29 @@ document.write(d_names[curr_day] + ","  + m_names[curr_month] + " " +curr_date);
       // hide the "loading..." message
       document.getElementById('loading').style.display = 'none';
         var groups = new vis.DataSet([
-    {id: 1231, content: 'Room 1' },
-    {id: 1232, content: 'Room 2' },
-    {id: 1233, content: 'Room 3' },
-    {id: 1234, content: 'Room 4'  }
-  ]);
+            {id: 0, content: ''},
+            {id: 1, content: 'Nicolas Baudin'},
+            {id: 2, content: 'Al Farabi'},
+            {id: 3, content: 'Roald Amundsen'},
+            {id: 4, content: 'Richard Byrd'},
+            {id: 5, content: 'Martin Behaim'},
+            {id: 6, content: 'Mattheu Flinders'},
+            {id: 7, content: 'Ibn Battuta'},
+            {id: 8, content: 'Al Masaudi'},
+            {id: 9, content: 'Vasco Da Gama'},
+            {id: 10, content: 'James Cook'},
+            {id: 11, content: 'Francis Drake'},
+            {id: 12, content: 'Vasco de Balboa'},
+            {id: 13, content: 'Robert Ballard'},
+            {id: 14, content: 'Al Razi'},
+            {id: 15, content: 'Ibn Majid'},
+            {id: 16, content: 'Christopher Columbus'},
+            {id: 17, content: 'David Livingstone'},
+            {id: 18, content: 'Ibn Sina'},
+            {id: 19, content: 'Neil Armstrong'},
+            {id: 20, content: 'Auditorium'}
+        ]);
+        /* */
       // DOM element where the Timeline will be attached
       var container = document.getElementById('visualization');
       // Create a DataSet (allows two way data-binding)
@@ -125,6 +155,7 @@ document.write(d_names[curr_day] + ","  + m_names[curr_month] + " " +curr_date);
             groupOrder: function (a, b) {
       return a.value - b.value;
     },
+          height: '700px',
     editable: true,
     //min: (24*60*60),
     //max: Date.getYear.getTime(),
@@ -185,3 +216,4 @@ document.write(d_names[curr_day] + ","  + m_names[curr_month] + " " +curr_date);
     });
 </script>
 </html>
+<?php } ?>

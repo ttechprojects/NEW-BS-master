@@ -1,5 +1,15 @@
 
-<?php
+<?php 
+    session_start();
+    if(!isset($_SESSION['Login']))
+    {
+        header('Location: index.php');
+    }
+    else
+    {
+       
+    
+    
 
     $connect=mysqli_connect("localhost","root","","ekbooking");
     
@@ -17,6 +27,7 @@
                       
         }
 mysqli_close($con);
- header('Location:home.php?m_id='.$meeting_id);     
+ header('Location:../home.php?m_id='.$meeting_id);   
+    }
 ?>
 

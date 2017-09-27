@@ -27,6 +27,13 @@ function showLoginForm(){
     $('.error').removeClass('alert alert-danger').html(''); 
 }
 
+function showLoginForm2(){
+
+    $('.loginBox2').fadeIn('fast');    
+    $('.modal-title').html('<br>Add a booking');
+    $('.error').removeClass('alert alert-danger').html(''); 
+}
+
 function showCMSForm(){
 
     $('.CMSBox').fadeIn('fast');    
@@ -64,6 +71,16 @@ function openLoginModal(){
     }, 230);
     
 }
+function openLoginModal2(){
+    
+
+    showLoginForm2();
+    setTimeout(function(){
+        $('#loginModal2').modal('show');    
+    }, 230);
+    
+}
+
 function openViewModal2(){
     if(window.location.href.indexOf("m_id") > -1) {
        
@@ -79,6 +96,13 @@ function openViewModal2(){
         $('#viewRoom').modal('show');    
     }, 230);
   }
+  else if(window.location.href.indexOf("#success") > -1){
+    alert("Successful!");
+  }
+  else if(window.location.href.indexOf("#fail") > -1){
+    alert("Please Try Again!");
+  }
+  
 }
 function openViewModal(){
     showViewForm();

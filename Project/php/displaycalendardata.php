@@ -1,4 +1,14 @@
-<?php
+<?php 
+    session_start();
+    if(!isset($_SESSION['Login']))
+    {
+        header('Location: index.php');
+    }
+    else
+    {
+       
+    
+    
  
 $con=mysqli_connect("localhost","root","","ekbooking");
 mysqli_set_charset('utf8');
@@ -31,4 +41,5 @@ if($result = mysqli_query($con, $sql))
 }
  
 mysqli_close($con);
+    }
 ?>

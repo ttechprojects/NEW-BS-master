@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<?php 
+    session_start();
+    if(!isset($_SESSION['Login']))
+    {
+        header('Location: index.php');
+    }
+    else
+    {
+       
+    
+    ?>
 <html>
     <body>
         <?php
@@ -64,7 +75,7 @@ header("Pragma: no-cache");
                    mysqli_close($con);
 
     
-         
+    }
           
 ?>
     </body>

@@ -1,4 +1,14 @@
-<?php
+<?php 
+    session_start();
+    if(!isset($_SESSION['Login']))
+    {
+        header('Location: index.php');
+    }
+    else
+    {
+       
+    
+    
 
 //--------------------------------------------------------------------------------------------------
 // This script reads event data from a JSON file and outputs those events which are within the range
@@ -70,4 +80,5 @@ foreach ($input_arrays as $array) {
 }
 // Send JSON to the client.
 echo json_encode($output_arrays);
+    }
 ?>

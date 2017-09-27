@@ -1,12 +1,14 @@
 <!Doctype html>
+
 <html>
 
 <head>
     <meta charset="utf-8" />
-
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Material Dashboard by Creative Tim</title>
+    <title>Header</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -17,11 +19,8 @@
     <!--  Material Dashboard CSS    -->
     <link href="css/material-dashboard.css" rel="stylesheet" />
 
-    <!--  CSS for Demo Purpose, don't include it in your project  -->
-    <!--<link href="css/demo.css" rel="stylesheet" />-->
-
     <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
     <style>
         #title {
@@ -85,53 +84,46 @@
  
     <body>
     
-    <nav class="navbar navbar-absolute navbar-danger" style="background:black; color:white; display:fixed;">
+    <nav class="navbar navbar-absolute navbar-danger" style="background:black;">
 						<div class="container">
 							
                             <div class="navbar-header">
                         <div class="logo-container">
-                            <div class="logo" style="margin-left:-190px; margin-top:0px; ">
-                                <img src="http://logos-download.com/wp-content/uploads/2016/03/Emirates_Airlines_logotype_emblem_logo_4.png" width="120" height="100" ;>
+                            <div class="logo" style="float:left; margin-top:0px; ">
+                                <img src="../Project/media/Emirates_Airlines_logotype_emblem_logo_4.png" width="120" height="110" ;>
                             </div>
 
 
                         </div>
                     </div>  
                             <div class="navbar-header">
-								<!--button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-danger">
-									<span class="sr-only">Toggle navigation</span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button-->
-                                <div class="collapse navbar-collapse" id="navigation-index">
+								<div class="collapse navbar-collapse" id="navigation-index">
 	    	
-                                <a class="navbar-brand" style="margin-left:-95px;" href="#"><h3>Emirates Headquaters Booking System</h3></a>
+                                <a class="navbar-brand" style="float:left; margin-top:-3%;" href="#"><h2>Emirates Headquaters</h2>
+                                    <p id="sub-title" style="margin-top:-4%;">Meeting Scheduler</p>
+                                    </a>
                        
 							</div>
                             
                             
                             </div>
 
-							<div class="collapse navbar-collapse" id="example-navbar-danger">
-								<ul class="nav navbar-nav navbar-right" style="margin-top:-15px;">
+							<div class="collapse navbar-collapse" id="example-navbar-danger" style="color:white;">
+								<ul class="nav navbar-nav navbar-right" style="margin-top:0px;">
 									<li>
-		                                <ul class="nav nav-pills " style="color:white; align:center; margin-left: 600px; margin-top: 0px; margin-right:-110px;">
+		                                <ul class="nav nav-pills nav-pills-danger" style="align:center; margin-top:15%; margin-right:-100px; color:white;">
                         <li><a href="home.php" style="color:white;">Home</a></li>
                         <li><a href="fullcalendar.php" style="color:white;">Calendar</a></li>
-                                            <li><a href="192.168.1.248:3001" style="color:white;">CMS</a></li>
+                                            <li><a href="http://192.168.1.248:3001" style="color:white;">CMS</a></li>
                         <li><a href="report.php" style="color:white;">Reports</a></li>
-                        <li><a href="#pill3"style="color:white;">Log Out</a></li>
-                                   </ul> 
+                        <li><a href="#pill3" style="color:white;">Log Out</a></li>
+                                   </ul>
                                 </ul>
                             </div>
 						</div>
 					</nav>
     
-    
-    
-     
-    </body>
+        </body>
 
 
 
@@ -146,14 +138,10 @@
 <!--  Notifications Plugin    -->
 <script src="js/bootstrap-notify.js"></script>
 
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
 
 <!-- Material Dashboard javascript methods -->
 <script src="js/material-dashboard.js"></script>
-
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="js/demo.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {

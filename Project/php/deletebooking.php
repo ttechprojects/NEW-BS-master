@@ -1,4 +1,15 @@
 <?php
+<?php 
+    session_start();
+    if(!isset($_SESSION['Login']))
+    {
+        header('Location: index.php');
+    }
+    else
+    {
+       
+    
+    ?>
 
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
@@ -27,4 +38,5 @@ if ($result = mysqli_query($con, $sql))
 }
  
 mysqli_close($con);
+    }
 ?>

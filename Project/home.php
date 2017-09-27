@@ -1,4 +1,15 @@
 <!doctype html>
+<?php 
+    session_start();
+    if(!isset($_SESSION['Login']))
+    {
+        header('Location: index.php');
+    }
+    else
+    {
+       
+    
+    ?>
 <html>
 <?php
 
@@ -12,10 +23,10 @@ header("Pragma: no-cache");
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <title>Booking System</title>
-    
-<script src="js/jquery-1.10.2.js" type="text/javascript"></script>  
+  <script src="js/jquery-1.10.2.js" type="text/javascript"></script>  
 <script src="js/jquery-ui.js" type="text/javascript"></script>
 <script src="js/jquery-3.1.0.min.js" type="text/javascript"></script>
+  
    <!--    For modal forms     -->
     <link href="css/bootstrap.css" rel="stylesheet" /> 
     <link href="css/login-register.css" rel="stylesheet" />
@@ -230,7 +241,7 @@ header("Pragma: no-cache");
          
         
         
-            <div class="sidebar" data-color="red" data-background="blue" style="margin:120px 0px 0px 0px;">
+            <div class="sidebar" data-color="red" data-background="blue" style="position:fixed;">
 			<!--
 		        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -242,7 +253,7 @@ header("Pragma: no-cache");
 	    	<div class="sidebar-wrapper" >
 				<ul class="nav">
 	                <li> 
-                        <a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">
+                        <a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();" style="margin-top:60%;">
                         
                             
                             <i class="material-icons unselectable">event</i>
@@ -304,19 +315,36 @@ header("Pragma: no-cache");
               <div class="content">  
                 <div class="form loginBox">
                   <form method="POST" accept-charset="UTF-8" action="php/add_booking.php" id="addabooking">
+                    <div class="row">
+                    <div class="col-md-8">
                     <div class="form-group label-floating">
 		              <label class="control-label">Meeting Name</label>
                       <input type="text" class="form-control" name="m_name" required>
                     </div>
+                      </div>
+                    <div class="col-md-4">
+                    <div class="form-group label-floating">
+		              <label class="control-label" id="nogtog">Number of Guests</label>    
+                      <input type="number" class="form-control" name="guests" required>
+                    </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6">
                     <div class="form-group label-floating">
 		              <label class="control-label">Staff Name</label>
                       <input type="text" class="form-control" name="s_name" required>
                     </div>
+                      </div>
+                      <div class="col-md-6">
                     <div class="form-group label-floating">
 		              <label class="control-label">Staff ID</label>
                       <input type="text" class="form-control" name="s_id" required>
-                    </div>          
+                    </div>   
+                      </div>
+                    </div>
                     <div class="form-group">
+                      
 		              <label class="control-label">Date</label>
                       <input type="text" class="form-control" id='datetimepicker4' name="date" required>          
                       <script type="text/javascript">
@@ -329,7 +357,9 @@ header("Pragma: no-cache");
                           });
                         });
                       </script>   
-                    </div>    
+                    </div>              
+                    <div class="row">
+                    <div class="col-md-6">
                     <div class="form-group">
 		              <label class="control-label">Start Time</label>
                       <input type='text' class="form-control" id='datetimepicker1' name="s_time" required />                    
@@ -341,6 +371,8 @@ header("Pragma: no-cache");
                         });
                       </script>                
                     </div>
+                       </div>
+                    <div class="col-md-6">
                     <div class="form-group">
                       <label class="control-label">End Time</label>
                       <input type='text' class="form-control" id='datetimepicker2' name="e_time" required />                 
@@ -352,7 +384,9 @@ header("Pragma: no-cache");
                         });
                       </script>
                     </div>
-                    
+                       </div>
+                    </div>
+                    <br>                    
                     <div class="checkbox">
                       <label>
                           <input type="checkbox" name="options[]" id="option" value="telephone">
@@ -401,18 +435,19 @@ header("Pragma: no-cache");
                       </label>
                   </div>
                     
-                    
-                    <div class="form-group label-floating">
-		              <label class="control-label" id="nogtog">Number of Guests</label>    
-                      <input type="number" class="form-control" name="guests" required>
-                    </div>
+                    <div class="row">
+                    <div class="col-md-4">
                     <div class="form-group label-floating">
 		              <label class="control-label">Contact</label>
                       <input type="number" class="form-control" name="contact" required>
-                    </div>
+                      </div>
+                      </div>
+                    <div class="col-md-8">
                     <div class="form-group label-floating">
 		              <label class="control-label">E-Mail</label>
                       <input id="email" class="form-control" type="text" name="email">
+                    </div>
+                      </div>
                     </div>
                     <button class="btn btn-default btn-login" value="Add a meeting" >Add a meeting</button>
                   </form>
@@ -433,6 +468,144 @@ header("Pragma: no-cache");
     
    
         
+      
+      
+      
+      
+      
+      
+       
+        <div class="modal fade login" id="loginModal2">
+      <div class="modal-dialog login animated">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Add a booking</h4>
+          </div>
+          <div class="modal-body">  
+            <div class="box">
+              <div class="content">  
+                <div class="form loginBox2">
+                  <form method="POST" accept-charset="UTF-8" action="php/add_booking.php" id="addabooking2">
+                    <div class="row">
+                    <div class="col-md-8">
+                    <div class="form-group label-floating">
+		              <label class="control-label">Meeting Name</label>
+                      <input type="text" class="form-control" name="m_name" required>
+                    </div>
+                      </div>
+                    <div class="col-md-4">
+                    <div class="form-group label-floating">
+		              <label class="control-label" id="nogtog">Number of Guests</label>    
+                      <input type="number" class="form-control" name="guests" required>
+                    </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6">
+                    <div class="form-group label-floating">
+		              <label class="control-label">Staff Name</label>
+                      <input type="text" class="form-control" name="s_name">
+                    </div>
+                      </div>
+                      <div class="col-md-6">
+                    <div class="form-group label-floating">
+		              <label class="control-label">Staff ID</label>
+                      <input type="text" class="form-control" name="s_id">
+                    </div>   
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      
+		              <label class="control-label">Date</label>
+                      <input type="text" class="form-control" id='datetimepicker4' name="date" required>          
+                      <script type="text/javascript">
+                              //$('.datepicker').datepicker({
+                              //weekStart:1
+                              //});
+                        $(function () {
+                          $('#datetimepicker4').datetimepicker({
+                            format: 'YYYY-MM-DD'
+                          });
+                        });
+                      </script>   
+                    </div>              
+                    <div class="row">
+                    <div class="col-md-6">
+                    <div class="form-group">
+		              <label class="control-label">Start Time</label>
+                      <input type='text' class="form-control" id='datetimepicker1' name="s_time" required />                    
+                      <script type="text/javascript">
+                        $(function () {
+                          $('#datetimepicker1').datetimepicker({
+                            format: 'HH:mm:ss'
+                          });
+                        });
+                      </script>                
+                    </div>
+                       </div>
+                    <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label">End Time</label>
+                      <input type='text' class="form-control" id='datetimepicker2' name="e_time" required />                 
+                      <script type="text/javascript">
+                        $(function () {
+                          $('#datetimepicker2').datetimepicker({
+                            format: 'HH:mm:ss'
+                          });
+                        });
+                      </script>
+                    </div>
+                       </div>
+                    </div>
+                    <br>                    
+                    
+                    <input type="hidden" name="r_id" value="
+                        <?php echo $_GET['r_id']; ?>
+                      " />
+                    <div class="row">
+                    <div class="col-md-4">
+                    <div class="form-group label-floating">
+		              <label class="control-label">Contact</label>
+                      <input type="number" class="form-control" name="contact" required>
+                      </div>
+                      </div>
+                    <div class="col-md-8">
+                    <div class="form-group label-floating">
+		              <label class="control-label">E-Mail</label>
+                      <input id="email" class="form-control" type="text" name="email">
+                    </div>
+                      </div>
+                    </div>
+                    <button class="btn btn-default btn-login" value="Add a meeting" >Add a meeting</button>
+                  </form>
+                </div>
+              </div>
+            </div>      
+          </div>      
+        </div>
+      </div>
+    </div>
+        
+        
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
         
         
         
@@ -703,7 +876,7 @@ header("Pragma: no-cache");
                                   </a>
                       </li>
                       <li class="active">
-                                  <a href="graph.php" role="tab">
+                                  <a href="php/vis-js-json.php" role="tab">
                                       Graph View
                                   </a>
                       </li>
@@ -802,7 +975,7 @@ header("Pragma: no-cache");
                     
                     <div class='card-content'>
                                     <h2 class='title'><b><a href='home.php?r_id=".$room_id[$room_count]."'>$room_name[$room_count]</a></b></h2>
-                                    <p class='category'>Meeting Name</p>
+                                   
 									
 								</div>
                             ";//creating the room cell in the table
@@ -969,6 +1142,16 @@ header("Pragma: no-cache");
           </tbody>
           </table>
           </div>
+      <a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal2();" style="margin-top:60%; margin-left:10%;">
+                        
+                            <script>
+                                $(this).click(function(){
+                                  $('#viewRoom').modal('hide');
+                                });
+                            </script>
+                            <i class="material-icons unselectable">add</i>
+                            Add a meeting
+                        </a>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Close</button>
         </div>
@@ -1010,3 +1193,4 @@ header("Pragma: no-cache");
 <script src="js/material-dashboard.js"></script>
 
 </html>
+<?php } ?>

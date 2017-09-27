@@ -1,6 +1,6 @@
 <?php
 	//Create connection
-	$con=mysqli_connect("localhost","root","root","EKBooking");
+	$con=mysqli_connect("localhost","root","","ekbooking");
 	
 	//Fetch variables from the URL
 	$username = $_POST["username"];
@@ -11,7 +11,7 @@
   		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 	
-	$sql = "SELECT username,password FROM Users;";
+	$sql = "SELECT username,password FROM user_profile;";
     
 	if ($result = mysqli_query($con, $sql))
 		{
@@ -22,14 +22,14 @@
 	    				{
                             session_start();
                             $_SESSION['Login']=$username;
-	    					header("Location:http://localhost/form.php");
+	    					header("Location: ../home.php");
 	    				}
                     else
                     	{
                         session_start();
 						$_SESSION['Message']="Login Unsuccessful";
-                        header("Location:http://localhost/login.php");
-                        
+                        header("Location: ../index.php");
+                         
                     	}
 	    		}
             mysqli_free_result($result);

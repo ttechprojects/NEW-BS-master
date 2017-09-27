@@ -1,4 +1,14 @@
-<?php
+<?php 
+    session_start();
+    if(!isset($_SESSION['Login']))
+    {
+        header('Location: index.php');
+    }
+    else
+    {
+       
+    
+ 
 	$r_name = $_GET['r_id'];
 	
 	//session_start();
@@ -42,5 +52,5 @@
 			mysqli_close($con);
             header("Location:home.php#openRoomDetails");
 			
-	//}
+	}
 ?>

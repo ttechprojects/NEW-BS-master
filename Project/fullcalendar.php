@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<?php 
+    session_start();
+    if(!isset($_SESSION['Login']))
+    {
+        header('Location: index.php');
+    }
+    else
+    {
+       
+    
+    ?>
 <html>
 
 <head>
@@ -219,7 +230,7 @@
 <body style="overflow: scroll;">
   <div class="wrapper">
     <div class="main-panel"><div class="content"><div class="container-fluid">  
-      <div class="sidebar" data-color="red" data-background="blue" style="margin:60px 0px 0px 0px; overflow:hidden;">
+      <div class="sidebar" data-color="red" data-background="blue" style="position:fixed; overflow:hidden;">
 			<!--
 		        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -232,7 +243,7 @@
 				<ul class="nav">
 	                <li>
 	                    
-                        <a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">
+                        <a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();" style="margin-top:50%;">
                             <i class="material-icons unselectable">event</i>
                             Add a meeting
                         </a>
@@ -649,3 +660,4 @@
 </body>
 
 </html>
+<?php } ?>
